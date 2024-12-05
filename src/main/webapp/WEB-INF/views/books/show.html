@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show a Book</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <!-- Book details -->
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h3 class="card-title text-center">Book Details</h3>
+                    <p class="text-center fs-5">
+                        <span th:text="${book.getTitle()}">Title</span>,
+                        <span th:text="${book.getAuthor()}">Author</span>,
+                        <span th:text="${book.getYear()}">Year</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Book assigning -->
+            <div th:if="${people}" class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <p class="mb-3">The book is free now. Who should I assign it to?</p>
+                    <form th:method="PATCH" th:action="@{/books/{id}/assign(id=${book.getId()})}">
+                        <div class="mb-3">
+                            <label for="person" class="form-label">Choose a person:</label>
+                            <select th:object="${person}" th:field="*{id}" id="person" class="form-select">
+                                <option th:each="person : ${people}" th:value="${person.getId()}" th:text="${person.getName()}">Select a person</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Assign the Book</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Book owner -->
+            <div th:if="${bookOwner}" class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <p class="mb-3">Now the book is assigned to:
+                        <strong th:text="${bookOwner.getName()}">Book Owner Name</strong>
+                    </p>
+                    <form th:method="PATCH" th:action="@{/books/{id}/release(id=${book.getId()})}">
+                        <button type="submit" class="btn btn-warning w-100">Release the Book</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Кнопки для редактирования и удаления -->
+            <div class="d-flex justify-content-between">
+                <form th:method="GET" th:action="@{/books/{id}/edit(id=${book.getId()})}" class="me-2">
+                    <button type="submit" class="btn btn-secondary w-100">Edit</button>
+                </form>
+                <form th:method="DELETE" th:action="@{/books/{id}(id=${book.getId()})}">
+                    <button type="submit" class="btn btn-danger w-100">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
