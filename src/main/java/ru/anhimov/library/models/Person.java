@@ -1,7 +1,8 @@
 package ru.anhimov.library.models;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -11,7 +12,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "person")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class Person {
 
@@ -45,5 +47,20 @@ public class Person {
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Person person = (Person) o;
+
+        return id == person.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
     }
 }
