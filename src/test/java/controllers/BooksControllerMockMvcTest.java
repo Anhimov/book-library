@@ -19,8 +19,6 @@ import ru.anhimov.library.models.Person;
 import ru.anhimov.library.services.BookService;
 import ru.anhimov.library.services.PersonService;
 import ru.anhimov.library.util.BookValidator;
-import org.springframework.validation.BindingResult;
-
 
 import java.util.Collections;
 import java.util.List;

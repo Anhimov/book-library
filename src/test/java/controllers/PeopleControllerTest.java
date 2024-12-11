@@ -11,7 +11,6 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.validation.BeanPropertyBindingResult;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import ru.anhimov.library.controllers.PeopleController;
 import ru.anhimov.library.models.Person;
@@ -20,7 +19,6 @@ import ru.anhimov.library.util.PersonValidator;
 
 import java.util.Collections;
 
-import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;

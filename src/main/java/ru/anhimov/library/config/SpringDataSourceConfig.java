@@ -18,8 +18,8 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@PropertySource(ApplicationConstants.HIBERNATE_PROPERTIES)
-@Profile("prod")
+@PropertySource(ApplicationConstants.PROD_HIBERNATE_PROPERTIES)
+@Profile(ApplicationConstants.PROD_PROFILE)
 @EnableTransactionManagement
 @EnableJpaRepositories(ApplicationConstants.REPOSITORIES_PACKAGE)
 public class SpringDataSourceConfig {

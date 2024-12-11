@@ -18,8 +18,8 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@PropertySource("classpath:hibernate-test.properties")
-@Profile("test")
+@PropertySource(ApplicationConstants.TEST_HIBERNATE_PROPERTIES)
+@Profile(ApplicationConstants.TEST_PROFILE)
 @EnableTransactionManagement
 @EnableJpaRepositories(ApplicationConstants.REPOSITORIES_PACKAGE)
 public class SpringDataSourceTestConfig {
